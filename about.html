@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Megazz Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #002366;
+            --secondary-color: #FFD700;
+            --accent-color: #E8491D;
+            --light-color: #F4F4F4;
+            --dark-color: #333;
+            --text-color: #555;
+            --white: #FFFFFF;
+            --gray: #DDDDDD;
+            --dark-gray: #777;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-left: 30px;
+        }
+
+        .nav-list a {
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-list a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-list a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero */
+        .page-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: url('https://via.placeholder.com/1920x1080?text=About+Megazz') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 35, 102, 0.7);
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* About Content */
+        .about-content {
+            padding: 80px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .founders-card {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .founders-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: url('https://via.placeholder.com/150?text=Founders') no-repeat center center/cover;
+            margin-right: 20px;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .about-image {
+            position: relative;
+            height: 500px;
+        }
+
+        .image-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 10px solid var(--white);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background: url('https://via.placeholder.com/600x500?text=Our+Story') no-repeat center center/cover;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+
+        .mission-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .mission-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .mission-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .mission-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .mission-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-size: cover;
+            background-position: center;
+            border: 5px solid var(--light-color);
+        }
+
+        .team-member h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .team-member p {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 70px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-about h3 {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-links h3 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 400px;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-list {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-list.active {
+                left: 0;
+            }
+            
+            .nav-list li {
+                margin: 15px 0;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .mission-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">MEGAZZ</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1>About Megazz Services</h1>
+            <p>Our journey from a small home-based business to a community leader</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2014, Megazz Services began its journey as a humble home-based car wash, expanding its offerings to include plates of Braai for its customers. The inception by Beatrice and Benny Mathew marked the beginning of a venture that would grow into an all-purpose business aimed at serving the Postdene community in Peymansburg, Northern Cape.</p>
+                    <p>The challenges of the Covid-19 pandemic, particularly Benny's retrenchment, catalyzed the business's diversification and growth, leading to its current status as a full-scale kitchen and service provider.</p>
+                    
+                    <div class="founders-card">
+                        <div class="founders-img"></div>
+                        <p>Beatrice & Benny Mathew - Founders</p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-frame"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-cards">
+                <div class="mission-card">
+                    <h3>Our Vision</h3>
+                    <p>At Megazz Services, our vision is to become a beacon of excellence and innovation within our community and beyond. We aspire to enrich lives through a diverse range of high-quality services, fostering a vibrant, self-sustaining community. Our commitment extends to creating employment opportunities, nurturing talent, and contributing to the economic and social vitality of Postdene.</p>
+                </div>
+                <div class="mission-card">
+                    <h3>Our Mission</h3>
+                    <p>Megazz Services is dedicated to providing exceptional, diverse services that meet the evolving needs of our community. Our mission is to deliver unparalleled value through our comprehensive range of offerings, from culinary delights and bespoke carpentry to meticulous cleaning services and beyond. We are committed to excellence, innovation, and the continuous development of our operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Our Team</h2>
+            <p class="section-subtitle">The dedicated people behind Megazz Services</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://via.placeholder.com/300x300?text=Beatrice');"></div>
+                    <h3>Beatrice Mathew</h3>
+                    <p>Co-Founder & CEO</p>
+                    <p>With a passion for service excellence, Beatrice leads our culinary and operations teams.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://via.placeholder.com/300x300?text=Benny');"></div>
+                    <h3>Benny Mathew</h3>
+                    <p>Co-Founder & COO</p>
+                    <p>Benny oversees our carpentry and logistics operations with a focus on quality.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://via.placeholder.com/300x300?text=Team');"></div>
+                    <h3>Our Staff</h3>
+                    <p>Dedicated Professionals</p>
+                    <p>A team of skilled individuals committed to delivering exceptional service to our community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>MEGAZZ</h3>
+                    <p>Providing quality services to the Postdene community since 2014.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Catering</a></li>
+                        <li><a href="services.html">Car Wash</a></li>
+                        <li><a href="services.html">Carpentry</a></li>
+                        <li><a href="services.html">Confectioneries</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Megazz Services. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+            
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navList.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a nav link
+            const navLinks = document.querySelectorAll('.nav-list a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navList.classList.remove('active');
+                });
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Current year for footer
+            const yearElement = document.getElementById('year');
+            if (yearElement) {
+                const currentYear = new Date().getFullYear();
+                yearElement.textContent = currentYear;
+            }
+            
+            // Animate elements on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.mission-card, .team-member');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animated elements
+            const animatedElements = document.querySelectorAll('.mission-card, .team-member');
+            animatedElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'all 0.6s ease';
+            });
+            
+            // Run once on page load
+            animateOnScroll();
+            
+            // Run on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
